@@ -1,0 +1,13 @@
+screen_color = (BLACK,BLACK,ON)
+dialog_color = (BLACK,BLACK,OFF)
+button_active_color = (BLACK,BLACK,ON)
+button_inactive_color = (BLACK,RED,OFF)
+border_color = (BLACK,BLACK,ON)
+border2_color = border_color
+inputbox_color = (CYAN,BLACK,OFF)
+inputbox_border_color = (BLACK,BLACK,OFF)
+button_active_color = (BLACK,BLACK,ON)
+button_key_active_color = (BLACK,GREEN,OFF)
+button_key_inactive_color = (GREEN,BLACK,OFF)
+button_label_active_color = (GREEN,BLACK,OFF)
+button_label_inactive_color = (GREEN,BLACK,ON)
