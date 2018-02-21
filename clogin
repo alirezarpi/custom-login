@@ -40,8 +40,8 @@ if [[ "$passdd" == "" ]]; then
 				cp dialogrc /etc/
 		fi
 		checkar=$(cat /root/.bashrc | grep "clogin")
-        if [[ "$checkar" == "" ]]; then
-				echo "Adding clogin in .bashrc ..." 
+        	if [[ "$checkar" == "" ]]; then
+				echo "Adding <clogin> in .bashrc ..." 
 				sed -i '1 i\clogin' /root/.bashrc #  adds to the first line of the .bashrc ( Root )
 		fi
 		sleep 0.1
@@ -73,6 +73,8 @@ if [[ "$passdd" == "" ]]; then
 		exit 0
 fi
 
+# Edit the boxes with your favorite color and name and title (( EDITS ))
+
 # If you're using --colors arg
 #    0  through  7  are  the  ANSI  color numbers used in curses:
 # black, red, green, yellow, blue, magenta, cyan and white re‐
@@ -84,42 +86,35 @@ fi
 # lowing text bold (perhaps bright) red.
 #    Restore normal settings with "\Zn".
 
-title='\Z1CAUTION: \Z3If you are not \Z6Alireza\Z3... \Z2Back off ^_^ ' # you can change the back title 
+title='\Z1CAUTION: \Z3If Title goes \Z6Here\Z3... \Z2dude ^_^ ' # you can change the back title (EDIT)
 try='0'
 trap '' INT TSTP # this cancels Ctrl-C and Ctrl-Z
 while true; do
 		gpassword=$(dialog --nocancel --insecure --colors --ok-label "Login" --backtitle "$title" \
-        --passwordbox "\Z6- Enter the \Zb\Z1password\ZB \Z6to login:\n\Z7" 9 50 3>&1 1>&2 2>&3) # get password
+        --passwordbox "\Z6- Enter the \Zb\Z1password\ZB \Z6to login:\n\Z7" 9 50 3>&1 1>&2 2>&3) # get password (EDIT)
 		ggpassword=$(echo $gpassword | base64) # hash the password 
 		ghashed=$(cat /etc/ar-shadow | gpg --passphrase $gpassword -d --no-use-agent 2>/dev/null) # real hashed password ;)
 		if [[ "$ggpassword" == "$ghashed" ]]; then # compare
-   		        dialog --sleep 1 --colors --nook --infobox "\Z2\ZbWelcome \Z6Alireza" 3 19 # welcome infobox
+   				dialog --sleep 1 --colors --nook --infobox "\Z2\ZbWelcome \Z6User" 3 19 # welcome box (EDIT)
 				break
 		fi
-        if [[ "$ggpassword" != "$ghashed" && "$gpassword" != "" ]]; then # Invalid password
-            	(( try ++ ))
-		    	dialog --sleep 1 --colors --nook --backtitle "Make it three to \Z1shutdown\Zn baby ;)" --infobox "\Z1Invalid Password " 3 21
-        fi
-        if [[ "$gpassword" == "" ]]; then # Emty password
-		        dialog --sleep 1 --colors --nook --infobox "\Z2Empty Password" 3 19
-        fi
+        	if [[ "$ggpassword" != "$ghashed" && "$gpassword" != "" ]]; then # Invalid password
+            			(( try ++ ))
+		    		dialog --sleep 1 --colors --nook --backtitle "Make it three to \Z1shutdown\Zn baby ;)" --infobox "\Z1Invalid Password " 3 21 # Shutdown box (EDIT)
+        	fi
+        	if [[ "$gpassword" == "" ]]; then # Emty password
+			        dialog --sleep 1 --colors --nook --infobox "\Z2Empty Password" 3 19 #Optional edit
+        	fi
 		if [[ "$try" == "3" ]]; then # Shutdown after 3 invalid passwords
-   		        dialog --sleep 1 --colors --nook --infobox "\Z3Shutting down the system" 3 30
-				exit 1
-				#systemctl poweroff
+   			        dialog --sleep 1 --colors --nook --infobox "\Z3Shutting down the system" 3 30 #Optional edit
+				systemctl poweroff
 		fi
-        sleep 0.1
+        	sleep 0.1
 done
 trap INT TSTP # Toggle Ctrl-C and Ctrl-Z
 
 checkgp=$(systemctl status graphical.target | grep " active")
 if [[ "$checkgp" == "" ]]; then
-		while true; do
-				sleep 3600 
-				notify-send "Walk for a minute Alireza"
-				sleep 60
-		done &
-		echo "nameserver 8.8.8.8" > /etc/resolv.conf
 		systemctl start graphical.target # start the X server
 fi
 tput clear
