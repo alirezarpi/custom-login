@@ -1,5 +1,3 @@
-*TODO*: fix the gpg version agent problem
-
 # Custom-Login ( clogin )
 *Make your own login page for GNU/Linux !*
 
@@ -14,6 +12,7 @@ You can customize it with what ever you want (EDIT)'s
 ### For your information
 * This script uses `dialog`, so it should be installed on your OS. You can read more about it in the [linux man page](https://linux.die.net/man/1/dialog).
 * Password is handeled just like linux shadow file ( hashed and encrypted ) so be sure that this is secure.
+* For now it doesn't work with gpg version above 1. ( *TODO*: It has agent problem <Help> you can encrypt with another encryption instead of gpg )
 
 ##
 ## Installing
@@ -26,8 +25,11 @@ For installing it:
 
 `cd custom-login && chmod +x clogin`
 
-but **before installing** it:
+but **before running** it:
 
 Open file `/etc/systemd/system/getty.target.wants/getty@tty1.service` with your favorite editor and
-Change the line `ExecStart=-sbin/agetty ....` to this `ExecStart=-/sbin/agetty --autologin root --noclear %I $TERM`
+Change the line `ExecStart=-sbin/agetty ....` to this:
 
+```
+ExecStart=-/sbin/agetty --autologin root --noclear %I $TERM
+```
