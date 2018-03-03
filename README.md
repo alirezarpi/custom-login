@@ -39,6 +39,6 @@ and finally in ``custom-login`` directory do `./clogin` as root and it's ready t
 
 ##
 
-Recommended Distros: Debian base ( Ubunt , Mint )
+Recommended Distros: Debian base ( Ubuntu , Mint )
 
 Note: Tested on Ubuntu 16.04 , Mint 18.3 , Fedora 27
