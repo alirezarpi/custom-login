@@ -11,8 +11,7 @@ You can customize it with what ever you want (EDIT)'s
 ##
 ### For your information
 * This script uses `dialog`, so it should be installed on your OS. You can read more about it in the [linux man page](https://linux.die.net/man/1/dialog).
-* Password is handeled just like linux shadow file ( hashed and encrypted ) so be sure that this is secure.
-* For now it doesn't work with gpg version above 1. ( *TODO*: It has agent problem <Help> you can encrypt with another encryption instead of gpg )
+* Password is handeled just like linux shadow file ( hashed , salted and encrypted ) so be sure that this is secure.
 
 ##
 ## Installing
@@ -33,3 +32,7 @@ Change the line `ExecStart=-sbin/agetty ....` to this:
 ```
 ExecStart=-/sbin/agetty --autologin root --noclear %I $TERM
 ```
+
+Then `./clogin` as root and it's ready to go :)
+
+Tested on Ubuntu 16.04
