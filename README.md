@@ -29,12 +29,14 @@ but **before running** it:
 Open file `/etc/systemd/system/getty.target.wants/getty@tty1.service` with your favorite editor and
 Change the line `ExecStart=-sbin/agetty ....` to this:
 
-```
+``
 ExecStart=-/sbin/agetty --autologin root --noclear %I $TERM
-```
+``
 
 Then open `Settings > Users` and enable `Automatic Login`
 
-and finally `./clogin` as root and it's ready to go :)
+and finally in ``custom-login`` directory do `./clogin` as root and it's ready to go :)
 
-Tested on Ubuntu 16.04
+##
+
+Note: Tested on Ubuntu 16.04
