@@ -33,9 +33,13 @@ Change the line `ExecStart=-sbin/agetty ....` to this:
 ExecStart=-/sbin/agetty --autologin root --noclear %I $TERM
 ``
 
-Then open `Settings > Users` and enable `Automatic Login`
+Then find `Settings > Users` and enable `Automatic Login`
 
 and finally in ``custom-login`` directory do `./clogin` as root and it's ready to go :)
+
+For editing files to make it more customized for yourself, edit it from `/usr/bin/clogin` as root with your favorite editor.
+
+**Hope you enjoy**
 
 ##
 
