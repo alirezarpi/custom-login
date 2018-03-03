@@ -33,6 +33,8 @@ Change the line `ExecStart=-sbin/agetty ....` to this:
 ExecStart=-/sbin/agetty --autologin root --noclear %I $TERM
 ```
 
-Then `./clogin` as root and it's ready to go :)
+Then open `Settings > Users` and enable `Automatic Login`
+
+and finally `./clogin` as root and it's ready to go :)
 
 Tested on Ubuntu 16.04
